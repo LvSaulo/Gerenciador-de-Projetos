@@ -1,0 +1,96 @@
+import java.util.Scanner;
+
+public class GerenciarProjetos {
+        public String indentificacao;
+        public String descricao; 
+        public String data_i, hora_i;
+        public String data_t, hora_t;
+        public String profissionais;
+        public String coordenador;
+        public String atividades;
+        public String responsavel;
+        public String tarefas;
+        public double valor_bolsa;
+        public double tempo_bolsa;
+
+        public GerenciarProjetos(String coordenador, String indentificacao, String descricao, String data_i, String hora_i, String data_t,
+                String hora_t, String profissionais, String atividades, String responsavel, String tarefas,
+                double valor_bolsa, double tempo_bolsa) {
+
+            System.out.println("Em processo de criação");
+
+            this.indentificacao = indentificacao;
+
+            System.out.print("Digite sua identificação: "); 
+            Scanner input = new Scanner(System.in);       
+            this.indentificacao = input.next();
+            // System.out.println(this.indentificacao); // Teste pra saber se o valor tá correto
+
+            if(this.indentificacao == "Professor" || this.indentificacao == "Pesquisador") {
+                System.out.println("Você quer adicionar/remover um projeto ou atividade?%nDigite (1) para projeto e (2) para atividade: ");
+                int opcao = input.nextInt();
+
+                if(opcao == 1) {
+                    System.out.println("Adicionar ou Remover? ");
+                    String aoe = input.next();
+
+                    if(aoe == "Adicionar") {
+                        this.descricao = descricao;
+                        System.out.print("Descrição do projeto: "); 
+                        this.descricao = input.next();
+                        // System.out.println(this.descricao); // Teste pra saber se o valor tá correto
+
+                        this.data_i = data_i;
+                        System.out.print("Digite a data de inicio: ");
+                        this.data_i = input.next();
+
+                        this.hora_i = hora_i;
+                        System.out.println("Digite a hora de inicio: ");
+                        this.hora_i = input.next();
+
+                        this.data_t = data_t;
+                        System.out.println("Digite a data de termino: ");
+                        this.data_t = input.next();
+
+                        this.hora_t = hora_t;
+                        System.out.println("Digite a hora de termino: ");
+                        this.hora_i = input.next();
+
+                        this.coordenador = coordenador;
+                        System.out.println("Digite o nome do coordenador do projeto: ");
+                        this.coordenador = input.next();
+                    }
+                    else if(aoe == "Remover") {
+
+                    }
+                }
+                else if(opcao == 2) {
+
+                }
+
+
+                
+            }
+
+            
+            
+            
+            this.profissionais = profissionais;
+            this.atividades = atividades;
+            this.valor_bolsa = valor_bolsa;
+            this.tempo_bolsa = tempo_bolsa;
+            this.responsavel = responsavel;
+            this.tarefas = tarefas;
+        }
+
+
+    public static void main(String[] args) {
+        GerenciarProjetos projetos = new GerenciarProjetos("coordenador", "indentificacao", "descricao", "data_i", "hora_i", "data_t", "hora_t", "profissionais", "atividades", "responsavel", "tarefas", 2, 3);
+        // System.out.println("O que deseja fazer");
+
+
+    }
+
+    /*public static void addP() {
+    }*/
+}
