@@ -71,9 +71,6 @@ public class GerenciarProjetos {
                         this.atividades = null;
                         this.valor_bolsa = 0;
                         this.tempo_bolsa = 0;
-                        this.responsavel = null;
-                        this.tarefas = null;
-
                     }
                 }
                 else if(opcao == 2) {
@@ -113,11 +110,7 @@ public class GerenciarProjetos {
                         this.hora_i = null;
                         this.data_t = null;
                         this.hora_t = null;
-                        this.coordenador = null;
                         this.profissionais = null;
-                        this.atividades = null;
-                        this.valor_bolsa = 0;
-                        this.tempo_bolsa = 0;
                         this.responsavel = null;
                         this.tarefas = null;
 
