@@ -61,11 +61,67 @@ public class GerenciarProjetos {
                         this.coordenador = input.next();
                     }
                     else if(aoe == "Remover") {
+                        this.descricao = null;
+                        this.data_i = null;
+                        this.hora_i = null;
+                        this.data_t = null;
+                        this.hora_t = null;
+                        this.coordenador = null;
+                        this.profissionais = null;
+                        this.atividades = null;
+                        this.valor_bolsa = 0;
+                        this.tempo_bolsa = 0;
+                        this.responsavel = null;
+                        this.tarefas = null;
 
                     }
                 }
                 else if(opcao == 2) {
+                    System.out.println("Adicionar ou Remover? ");
+                    String aoe = input.next();
 
+                    if(aoe == "Adicionar") {
+                        this.descricao = descricao;
+                        System.out.print("Descrição do projeto: "); 
+                        this.descricao = input.next();
+                        // System.out.println(this.descricao); // Teste pra saber se o valor tá correto
+
+                        this.data_i = data_i;
+                        System.out.print("Digite a data de inicio: ");
+                        this.data_i = input.next();
+
+                        this.hora_i = hora_i;
+                        System.out.println("Digite a hora de inicio: ");
+                        this.hora_i = input.next();
+
+                        this.data_t = data_t;
+                        System.out.println("Digite a data de termino: ");
+                        this.data_t = input.next();
+
+                        this.hora_t = hora_t;
+                        System.out.println("Digite a hora de termino: ");
+                        this.hora_i = input.next();
+
+                        this.coordenador = coordenador;
+                        System.out.println("Digite o nome do coordenador do projeto: ");
+                        this.coordenador = input.next();
+                        
+                    }
+                    else if(aoe == "Remover") {
+                        this.descricao = null;
+                        this.data_i = null;
+                        this.hora_i = null;
+                        this.data_t = null;
+                        this.hora_t = null;
+                        this.coordenador = null;
+                        this.profissionais = null;
+                        this.atividades = null;
+                        this.valor_bolsa = 0;
+                        this.tempo_bolsa = 0;
+                        this.responsavel = null;
+                        this.tarefas = null;
+
+                    }
                 }
 
 
