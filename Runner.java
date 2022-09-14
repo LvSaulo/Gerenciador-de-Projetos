@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Runner {
     ArrayList<Users> users = new ArrayList<Users>();
@@ -27,6 +28,7 @@ public class Runner {
             System.out.println("Digite (2) para criar um usuario\n");
             System.out.println("Digite (3) se esqueceu a senha do usuario\n");
             System.out.println("Digite (0) para sair do programa");
+            System.out.println("Digite sua escolha: ");
             opc = in.nextInt();
 
             if(opc == 1) {
@@ -56,7 +58,7 @@ public class Runner {
             else if(opc == 2) {
                 System.out.println("Digite seu id: ");
                 int id = in.nextInt();
-                for(int i = 0; i < users.size(); i++) {
+                for(int i = 0; i <= users.size(); i++) {
                     if(id == users.get(i).getID()) {
                         System.out.println("Esse ID já existe\nTente digitar outro ID: ");
                         id = in.nextInt();
@@ -254,12 +256,17 @@ public class Runner {
             }
         }
         else if(decide == 7) {
-            System.out.println("Digite o id do usuario que deseja associar: ");
-            int user_asso = in.nextInt();
+            System.out.println("Digite o id do projeto que deseja associar: ");
+            String projeto_asso = in.next();
 
-            for(int i = 0; i < users.size(); i++) {
-                if(users.get(i).getID() == user_asso) {
-
+            for(int i = 0; i < projetos.size(); i++) {
+                if(projetos.get(i).getId().equals(projeto_asso)) {
+                    projetos.get(i).associarUser();
+                    break;
+                }
+                else if(i == projetos.size()-1) {
+                    System.out.println("Projeto não encontrado!");
+                    break;
                 }
             }
             
