@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Runner {
@@ -103,14 +102,12 @@ public class Runner {
         System.out.println("Digite 6 para editar um projeto a partir de um ID.");
         System.out.println("Digite 7 para associar um usuario a algum projeto.");
         System.out.println("Digite 8 para associar um projeto a um usuario.");
-        System.out.println("Digite 9 para associar uma atividade a um usuário.");
-        System.out.println("Digite 10 para associar um usuário a uma atividade.");
+        System.out.println("Digite 9 para undo.");
+        System.out.println("Digite 10 para redo.");
         System.out.println("Digite 11 para alterar o status de um projeto.");
         System.out.println("Digite 12 para consultar por usuário.");
         System.out.println("Digite 13 para consultar por ID de projeto.");
         System.out.println("Digite 14 para consultar por atividade.");
-        System.out.println("Digite 15 para undo.");
-        System.out.println("Digite 16 para redo.");
         System.out.println("Digite 0 para sair do programa.");
 
         mannager();
@@ -133,8 +130,7 @@ public class Runner {
                     break;
                 }
                 else if(i == projetos.size()) {
-                    String[] pf = {"pf"};
-                    Projetos newProjeto = new Projetos(id, "desc", "1", "3", "41", "32", "coord", pf);
+                    Projetos newProjeto = new Projetos(id, "desc", "1", "3", "41", "32", "coord", users);
                     newProjeto.addProjetos();
                     projetos.add(newProjeto);
                     break;
@@ -165,19 +161,16 @@ public class Runner {
             }
         }
         else if(decide == 4) {
-            System.out.println("Digite o ID do usuário que deseja intercambiar: ");
-            int id_user_intercambiar = in.nextInt();
             System.out.println("Digite o ID do projeto que deseja associar: ");
             String id_projeto_intercambiar = in.next();
             for(int i = 0; i < projetos.size(); i++) {
                 if(id_projeto_intercambiar.equals(projetos.get(i).getId())) {
-                    if(true) {
-                        break;
-                    }
-                    else if(i == projetos.size()-1) {
-                        System.out.println("Projeto não encontrado!");
-                        break;
-                    }
+                    projetos.get(i).intercambiar();
+                    break;
+                }
+                else if(i == projetos.size()-1) {
+                    System.out.println("Projeto não encontrado!");
+                    break;
                 }
             }
 
@@ -250,34 +243,8 @@ public class Runner {
                         else if (edit.equalsIgnoreCase("profissionais")) {
                             System.out.println(
                                     "Digite 1 para adicionar um novo profissional, 2 para excluir um profissional e 3 para editar um profissional: ");
-                            /*
-                             * int editP = in.nextInt();
-                             * if(editP == 1) {
-                             * qntP++;
-                             * System.out.println("Digite o nome do profissional: ");
-                             * this.profissionais[qntP-1] = in.next();
-                             * }
-                             * else if(editP == 2) {
-                             * System.out.println("Qual o nome do profissional que deseja remover: ");
-                             * String name_removeP = in.next();
-                             * for(int j = 0; j < qntP; j++) {
-                             * if(name_removeP.equals(this.profissionais[j])) {
-                             * this.profissionais[j] = null;
-                             * qntP--;
-                             * }
-                             * }
-                             * }
-                             * else if(editP == 3) {
-                             * System.out.println("Qual o nome do profissional que deseja editar: ");
-                             * String name_editP = in.next();
-                             * for(int j = 0; j < qntP; j++) {
-                             * if(name_editP.equals(this.profissionais[j])) {
-                             * System.out.println("Digite o novo nome do profissional: ");
-                             * this.profissionais[j] = in.next();
-                             * }
-                             * }
-                             * }
-                             */
+                                    projetos.get(j).editProfissional();
+                            
                         } else {
                             System.out.println("\nDigite uma opção válida!\n");
                             // i = true;
@@ -359,17 +326,7 @@ public class Runner {
                 }
             }
         }
-        else if(decide == 15) {
             
-        }
-        else if(decide == 16) {
-            
-        }
-        else if(decide == 17) {
-            
-        }
-       
-        
     }
 
     public Users getUsers(int count_users) {
