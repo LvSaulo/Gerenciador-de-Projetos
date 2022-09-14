@@ -4,22 +4,23 @@ import java.util.ArrayList;
 public class Projetos {
 
     ArrayList<Atividades> atividades = new ArrayList<Atividades>();
+    ArrayList<Users> users = new ArrayList<Users>();
+    ArrayList<Users> users_projeto = new ArrayList<Users>();
     ArrayList<Users> users_intercambio = new ArrayList<Users>();
 
-    public String identificacao;
-    public String descricao;
-    public String data_i, hora_i, data_t, hora_t;
-    public String[] profissionais;
+    private String identificacao;
+    private String descricao;
+    private String data_i, hora_i, data_t, hora_t;
     public String coordenador;
-    public double[] valor_bolsa;
-    public double tempo_bolsa;
+    private double[] valor_bolsa;
+    private double tempo_bolsa;
     public int stt;
 
     public int qntP; // Quantidade de profissionais
     public int qntA; // Quantidade de Atividades
 
     public Projetos(String identificacao, String descricao, String data_i, String data_t, String hora_i, String hora_t,
-            String coordenador, String[] profissionais) {
+            String coordenador, ArrayList<Users> users) {
         
         this.identificacao = identificacao;
         this.descricao = descricao;
@@ -28,9 +29,9 @@ public class Projetos {
         this.hora_i = hora_i;
         this.hora_t = hora_t;
         this.coordenador = coordenador;
-        this.profissionais = profissionais;
         this.atividades = atividades;
         this.stt = -1;
+        this.users = users;
     }
 
     public int getStatusProjeto() {return stt;}
@@ -56,7 +57,25 @@ public class Projetos {
     }
 
     public void intercambiar() {
-        
+        System.out.println("Digite o ID do usuário que deseja intercambiar");
+        int id_user_inter = in.nextInt();
+        for(int i = 0; i < this.users.size(); i++) {
+            if(id_user_inter == this.users.get(i).getID()) {
+                for(int j = 0; j < users_projeto.size(); j++) {
+                    if(id_user_inter == users_projeto.get(j).getID()) {
+                        System.out.println("Esse usuario já faz parte do projeto");
+                        break;
+                    }
+                    else if(j == users_projeto.size()-1) {
+                        users_intercambio.add(this.users.get(i));
+                        users_projeto.add(this.users.get(i));
+                    }
+                }
+            }
+            else if(i == users.size()-1) {
+                System.out.println("Usuario não encontrado");
+            }
+        }
     }
 
     public void addAt() {
@@ -75,7 +94,7 @@ public class Projetos {
 
         String[] at_profissionais = {"a"};
         String[] tarefas = {"g"};
-        Atividades newAtividade = new Atividades(id_at, "a", "b", "2", "data_t", "hora_t", "responsavel", "at_profissionais", tarefas);
+        Atividades newAtividade = new Atividades(id_at, "a", "b", "2", "data_t", "hora_t", "responsavel", "at_profissionais", tarefas, users_projeto);
         newAtividade.addAtividades();
         atividades.add(newAtividade);
     }
@@ -172,10 +191,31 @@ public class Projetos {
     }
     public void profissional(int qnt) {
         for(int i = 0; i < qntP; i++) {
-            System.out.println("Digite o nome do profissional: ");
-            this.profissionais[i] = in.next();
+            System.out.println("Digite o id do profissional: ");
+            int id_user = in.next();
+            for(int j = 0; j < this.users.size(); j++) {
+                if(id_user == this.users.get(j).getID()) {
+                    users_projeto.add(this.users.get(j));
+                    break;
+                }
+                else if(j == this.users.size()-1) {
+                    System.out.println("Esse usuario não existe!");
+                    break;
+                }
+            }
+            
         }
     }
+    public void removeProfissional() {
+        System.out.println("Digite o ID do usuario que deseja remover: ");
+        int id_profissional_remover = in.nextInt();
+        for(int i = 0; i < users_projeto.size(); i++) {
+            if(id_profissional_remover == users_projeto.get(i).getID()) {
+                
+            }
+        }
+    }
+
     public void editProfissional() {
         
     }
@@ -203,23 +243,8 @@ public class Projetos {
             System.out.printf("Digite o valor da bolsa do profissional %s: ", this.profissionais[i]);
             this.valor_bolsa[i] = in.nextDouble();
         }
-
         System.out.println("digite o tempo da bolsa: ");
         this.tempo_bolsa = in.nextDouble(); */
-    }
-
-    public void removeProjetos() {
-        this.identificacao = null;
-        this.descricao = null;
-        this.data_i = null;
-        this.data_t = null;
-        this.hora_i = null;
-        this.hora_t = null;
-        this.coordenador = null;
-        this.profissionais = null;
-        this.atividades = null;
-        this.valor_bolsa = null;
-        this.tempo_bolsa = -1;
     }
 
 }
