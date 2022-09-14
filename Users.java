@@ -44,7 +44,7 @@ public class Users {
     public void setStatusUser() {
         System.out.println("Tipos de usuarios: Aluno, Professor, Pesquisador, Profissional, Tecnico.\n");
         System.out.println("Digite seu tipo de usuario: ");
-        StatusUser status = StatusUser.valueOf(input.nextLine().toUpperCase());
+        //StatusUser status = StatusUser.ALUNO;
     }
     public void setValorBolsa() {
         System.out.println("Digite o valor da bolsa: ");
@@ -53,14 +53,6 @@ public class Users {
     public void setTempoBolsa() {
         System.out.println("Digite o tempo da bolsa: ");
         this.tempo_bolsa = input.nextDouble();
-    }
-
-    public void removeUsers() {
-        this.id = -1;
-        this.senha = null;
-        this.name = null;
-        this.ocupacao = null;
-
     }
 
     
