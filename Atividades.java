@@ -4,14 +4,14 @@ import java.util.ArrayList;
 public class Atividades {
 
     ArrayList<Users> users = new ArrayList<Users>();
-    ArrayList<users> users_atividade = new ArrayList<Users>();
+    ArrayList<Users> users_atividade = new ArrayList<Users>();
 
-    private String identificacao;
-    private String descricao;
+    public String identificacao;
+    public String descricao;
     private String data_i, hora_i, data_t, hora_t;
-    private String responsavel;
-    private String profissionais;
-    private String[] tarefas_per_profissional;
+    public String responsavel;
+    public String profissionais;
+    public String[] tarefas_per_profissional;
 
     public int qntP = 1;
     public int tarefas;
