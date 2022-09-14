@@ -7,13 +7,14 @@ public class Projetos {
     ArrayList<Users> users = new ArrayList<Users>();
     ArrayList<Users> users_projeto = new ArrayList<Users>();
     ArrayList<Users> users_intercambio = new ArrayList<Users>();
+    ArrayList<Users> users_associados = new ArrayList<Users>();
 
-    private String identificacao;
-    private String descricao;
-    private String data_i, hora_i, data_t, hora_t;
+    public String identificacao;
+    public String descricao;
+    public String data_i, hora_i, data_t, hora_t;
     public String coordenador;
-    private double[] valor_bolsa;
-    private double tempo_bolsa;
+    public double[] valor_bolsa;
+    public double tempo_bolsa;
     public int stt;
 
     public int qntP; // Quantidade de profissionais
@@ -42,7 +43,7 @@ public class Projetos {
     public String getDataT() {return this.data_t;}
     public String getHoraT() {return this.hora_t;}
     public String getCoord() {return this.coordenador;}
-    public String[] getProfissional() {return this.profissionais;}
+    //public String[] getProfissional() {return this.profissionais;}
     
     Scanner in = new Scanner(System.in);
 
@@ -74,6 +75,16 @@ public class Projetos {
             }
             else if(i == users.size()-1) {
                 System.out.println("Usuario não encontrado");
+            }
+        }
+    }
+
+    public void associarUser() {
+        System.out.println("Digite o ID do usuario que deseja associar: ");
+        int id_user_associar = in.nextInt();
+        for(int i = 0; i < users.size(); i++) {
+            if(id_user_associar == users.get(i).getID()) {
+                users_intercambio.add(users.get(i));
             }
         }
     }
@@ -192,7 +203,7 @@ public class Projetos {
     public void profissional(int qnt) {
         for(int i = 0; i < qntP; i++) {
             System.out.println("Digite o id do profissional: ");
-            int id_user = in.next();
+            int id_user = in.nextInt();
             for(int j = 0; j < this.users.size(); j++) {
                 if(id_user == this.users.get(j).getID()) {
                     users_projeto.add(this.users.get(j));
@@ -211,13 +222,25 @@ public class Projetos {
         int id_profissional_remover = in.nextInt();
         for(int i = 0; i < users_projeto.size(); i++) {
             if(id_profissional_remover == users_projeto.get(i).getID()) {
-                
+                users_projeto.remove(i);
+                break;
+            }
+            else if(i == users_projeto.size()-1) {
+                System.out.println("Esse usuario não existe!");
+                break;
             }
         }
     }
 
     public void editProfissional() {
-        
+        int opt_edit_profiss = in.nextInt();
+        if(opt_edit_profiss == 1) {profissional(1);}
+        else if(opt_edit_profiss == 2) {
+            removeProfissional();
+        }
+        else if(opt_edit_profiss == 3) {
+
+        }
     }
 
     public void addProjetos() {
@@ -246,5 +269,4 @@ public class Projetos {
         System.out.println("digite o tempo da bolsa: ");
         this.tempo_bolsa = in.nextDouble(); */
     }
-
 }
