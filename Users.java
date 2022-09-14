@@ -7,7 +7,7 @@ public class Users {
     public int id;
     public String senha;
     public String name;
-    public String ocupacao;
+    public int cargo;
     public double valor_bolsa;
     public double tempo_bolsa; // em horas
 
@@ -42,9 +42,17 @@ public class Users {
         this.name = input.next();
     }
     public void setStatusUser() {
-        System.out.println("Tipos de usuarios: Aluno, Professor, Pesquisador, Profissional, Tecnico.\n");
+        System.out.println("Tipos de usuarios: 1 - Aluno\n2 - Professor\n3 - Pesquisador\n4 - Profissional\n5 - Tecnico.\n");
+
         System.out.println("Digite seu tipo de usuario: ");
-        //StatusUser status = StatusUser.ALUNO;
+        cargo = input.nextInt();
+
+        if(cargo == 1) {StatusUser status = StatusUser.ALUNO;}
+        else if(cargo == 2) {StatusUser status = StatusUser.PROFESSOR;}
+        else if(cargo == 3) {StatusUser status = StatusUser.PESQUISADOR;}
+        else if(cargo == 4) {StatusUser status = StatusUser.PROFISSIONAL;}
+        else if(cargo == 5) {StatusUser status = StatusUser.TECNICO;}
+        //
     }
     public void setValorBolsa() {
         System.out.println("Digite o valor da bolsa: ");
