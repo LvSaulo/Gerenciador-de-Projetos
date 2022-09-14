@@ -1,19 +1,23 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Atividades {
 
-    public String identificacao;
-    public String descricao;
-    public String data_i, hora_i, data_t, hora_t;
-    public String responsavel;
-    public String profissionais;
-    public String[] tarefas_per_profissional;
+    ArrayList<Users> users = new ArrayList<Users>();
+    ArrayList<users> users_atividade = new ArrayList<Users>();
 
-    public int qntP;
+    private String identificacao;
+    private String descricao;
+    private String data_i, hora_i, data_t, hora_t;
+    private String responsavel;
+    private String profissionais;
+    private String[] tarefas_per_profissional;
+
+    public int qntP = 1;
     public int tarefas;
 
     public Atividades(String identificacao, String descricao, String data_i, String hora_i, String data_t,
-            String hora_t, String responsavel, String profissionais, String[] tarefas_per_profissional) {
+            String hora_t, String responsavel, String profissionais, String[] tarefas_per_profissional, ArrayList<Users> users) {
         
         this.identificacao = identificacao;
         this.descricao = descricao;
@@ -24,6 +28,7 @@ public class Atividades {
         this.responsavel = responsavel;
         this.profissionais = profissionais;
         this.tarefas_per_profissional = tarefas_per_profissional;
+        this.users = users;
     }
 
     public String getId() {return this.identificacao;}
@@ -65,8 +70,18 @@ public class Atividades {
         this.responsavel = in.next();
     }
     public void profissional() {
-        System.out.println("Digite o nome do profissional: ");
-        this.profissionais = in.next();
+        System.out.println("Digite o id do profissional: ");
+        int id_profissional = in.nextInt();
+        for(int i = 0; i < this.users.size(); i++) {
+            if(id_profissional == this.users.get(i).getID()) {
+                users_atividade.add(this.users.get(i));
+                break;
+            }
+            else if(i == this.users.size()-1) {
+                System.out.println("Usuario não encontrado");
+                break;
+            }
+        }
 
         System.out.println("Quantas atividades esse profissional vai exercer? ");
         tarefas = in.nextInt();
@@ -75,7 +90,7 @@ public class Atividades {
     }
     public void taref(int tarefas) {
         for(int j = 0; j < tarefas; j++) {
-            System.out.printf("Digite o nome da atividade que o profissional %s vai fazer: ", this.profissionais);
+            System.out.printf("Digite o nome da atividade que o profissional %s vai fazer: ", users.get(j).getName());
             this.tarefas_per_profissional[j] = in.next();
         }
     }
@@ -91,26 +106,15 @@ public class Atividades {
         dataT();
         horaT();
         responsavelA();
-        profissional();       
+
+        System.out.println("Quantos profissionais vão participar da atividade? ");
+        qntP = in.nextInt(); // salva a quantidade de profissionais
+        for(int i = 0; i < qntP; i++) {
+            profissional();
+        }
+               
               
-        /*System.out.println("Quantos profissionais vão participar do projeto? ");
-        qntP = in.nextInt(); // salva a quantidade de profissionais */
 
         /*for(int i = 0; i < qntP; i++) {}/* */      
-    }
-
-    public void removeAtividades() {
-        this.identificacao = null;
-        this.descricao = null;
-        this.data_i = null;
-        this.data_t = null;
-        this.hora_i = null;
-        this.hora_t = null;
-        this.profissionais = null;
-        this.tarefas_per_profissional = null;
-    }
-
-    public void editAtividades() {
-        
     }
 }
