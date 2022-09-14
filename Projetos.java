@@ -3,7 +3,8 @@ import java.util.ArrayList;
 
 public class Projetos {
 
-    ArrayList<Atividades> atividades = new ArrayList<Atividades>(); 
+    ArrayList<Atividades> atividades = new ArrayList<Atividades>();
+    ArrayList<Users> users_intercambio = new ArrayList<Users>();
 
     public String identificacao;
     public String descricao;
@@ -42,9 +43,9 @@ public class Projetos {
     public String getCoord() {return this.coordenador;}
     public String[] getProfissional() {return this.profissionais;}
     
+    Scanner in = new Scanner(System.in);
 
-    public void statusProjeto() {
-        Scanner in = new Scanner(System.in);
+    public void statusProjeto() {   
         System.out.println("0 - EM CRIACAO\n1 - EM ANDAMENTO\n2 - CONCLUIDO");
         System.out.println("Digite o novo status do Projeto: ");
         this.stt = in.nextInt();
@@ -54,10 +55,11 @@ public class Projetos {
         else if(this.stt == 2) System.out.println("Concluido!");
     }
 
+    public void intercambiar() {
+        
+    }
 
     public void addAt() {
-        Scanner in = new Scanner(System.in);
-
         System.out.println("Digite a idetenficacao da atividade: ");
         String id_at = in.next();
 
@@ -75,10 +77,75 @@ public class Projetos {
         String[] tarefas = {"g"};
         Atividades newAtividade = new Atividades(id_at, "a", "b", "2", "data_t", "hora_t", "responsavel", "at_profissionais", tarefas);
         newAtividade.addAtividades();
+        atividades.add(newAtividade);
     }
 
-    Scanner in = new Scanner(System.in);
+    public void editAtividades() {
+        System.out.println("Digite 1 para adicionar uma nova atividade, 2 para excluir uma atividade e 3 para editar uma atividade: ");
+        int editA = in.nextInt();
+        if(editA == 1) {
+            addAt();
+            
+        }
+        else if(editA == 2) {
+            System.out.println("Qual a identifcacao da atividade que deseja remover: ");
+            String name_removeA = in.next();
+            for(int j = 0; j < atividades.size(); j++) {
+                if(atividades.get(j).getId().equals(name_removeA)) {
+                    atividades.remove(j);
+                    qntA--;
+                }
+            }
+        }
+        else if(editA == 3) {
+            System.out.println("Qual a identificao da atividade que deseja editar: ");
+            String name_editA = in.next();
+            for(int j = 0; j < atividades.size(); j++) {
+                if(atividades.get(j).getId().equals(name_editA)) {
+                    System.out.println("1 para descrição\n2 para data de inicio\n3 para hora de inicio\n4 para data de termino\n5 para hora de termino\6 para responsavel\n7 para profissional\n");
+                    System.out.println("O que deseja editar? ");
+                    int decide = in.nextInt();
+                    if(decide == 1) {
+                        atividades.get(j).desc();
+                        break;
+                    }
+                    else if(decide == 2) {
+                        atividades.get(j).dataI();
+                        break;
+                    }
+                    else if(decide == 3) {
+                        atividades.get(j).horaI();
+                        break;
+                    }
+                    else if(decide == 4) {
+                        atividades.get(j).dataT();
+                        break;
+                    }
+                    else if(decide == 5) {
+                        atividades.get(j).horaT();
+                        break;
+                    }
+                    else if(decide == 6) {
+                        atividades.get(j).responsavelA();
+                        break;
+                    }
+                    else if(decide == 7) {
+                        atividades.get(j).profissional();
+                        break;
+                    }
+                }
+                else if(j == atividades.size()-1) {
+                    System.out.println("Identificação não encontrada");
+                    break;
+                }
+            }
+        }
+    }
 
+    public void ident() {
+        System.out.println("Identificação do projeto: ");
+        this.identificacao = in.next();
+    }
     public void desc() {
         System.out.print("Descrição do projeto: ");
         this.descricao = in.next();
@@ -91,7 +158,6 @@ public class Projetos {
         System.out.println("Digite a hora de inicio: ");
         this.hora_i = in.next();
     }
-    
     public void dataT() {
         System.out.println("Digite a data de termino: ");
         this.data_t = in.next();
@@ -111,7 +177,7 @@ public class Projetos {
         }
     }
     public void editProfissional() {
-
+        
     }
 
     public void addProjetos() {
@@ -156,145 +222,4 @@ public class Projetos {
         this.tempo_bolsa = -1;
     }
 
-    public void editPojetos() {
-        Scanner in = new Scanner(System.in);
-
-        String edit;
-
-        boolean i = true;
-        while (i) {
-            i = false;
-
-            System.out.println("O que deseja editar: ");
-            edit = in.next();
-
-            /*if(edit.equalsIgnoreCase("identificacao")) {
-                System.out.println("Digite a nova identificacao do projeto: ");
-                this.identificacao = in.next();
-            }
-            else if(edit.equalsIgnoreCase("descricao")) {
-                System.out.println("Digite a nova descricao do projeto: ");
-                this.descricao = in.next();
-            }
-            else if(edit.equalsIgnoreCase("data de inicio")) {
-                System.out.println("Digite a nova data de inicio do projeto: ");
-                this.data_i = in.next();
-            }
-            else if(edit.equalsIgnoreCase("hora de inicio")) {
-                System.out.println("Digite a nova hora de inicio do projeto: ");
-                this.hora_i = in.next();
-            }
-            else if(edit.equalsIgnoreCase("data de termino")) {
-                System.out.println("Digite a nova data de termino do projeto: ");
-                this.data_t = in.next();
-            }
-            else if(edit.equalsIgnoreCase("hora de termino")) {
-                System.out.println("Digite a nova hora de termino do projeto: ");
-                this.hora_t = in.next();
-            }
-            else if(edit.equalsIgnoreCase("coordenador")) {
-                System.out.println("Digite o novo coordenador do projeto: ");
-                this.data_i = in.next();
-            }
-            else if(edit.equalsIgnoreCase("profissionais")) {
-                System.out.println("Digite 1 para adicionar um novo profissional, 2 para excluir um profissional e 3 para editar um profissional: ");
-                int editP = in.nextInt();
-                if(editP == 1) {
-                    qntP++;
-                    System.out.println("Digite o nome do profissional: ");
-                    this.profissionais[qntP-1] = in.next();
-                }
-                else if(editP == 2) {
-                    System.out.println("Qual o nome do profissional que deseja remover: ");
-                    String name_removeP = in.next();
-                    for(int j = 0; j < qntP; j++) {
-                        if(name_removeP.equals(this.profissionais[j])) {
-                            this.profissionais[j] = null;
-                            qntP--;
-                        }
-                    }
-                }
-                else if(editP == 3) {
-                    System.out.println("Qual o nome do profissional que deseja editar: ");
-                    String name_editP = in.next();
-                    for(int j = 0; j < qntP; j++) {
-                        if(name_editP.equals(this.profissionais[j])) {
-                            System.out.println("Digite o novo nome do profissional: ");
-                            this.profissionais[j] = in.next();
-                        }
-                    }
-                }   
-            } */
-            /*else*/ if(edit.equalsIgnoreCase("atividades")) {
-                System.out.println("Digite 1 para adicionar uma nova atividade, 2 para excluir uma atividade e 3 para editar uma atividade: ");
-                int editA = in.nextInt();
-                if(editA == 1) {
-                    addAt();
-                    
-                }
-                else if(editA == 2) {
-                    System.out.println("Qual a identifcacao da atividade que deseja remover: ");
-                    String name_removeA = in.next();
-                    for(int j = 0; j < atividades.size(); j++) {
-                        if(atividades.get(j).getId().equals(name_removeA)) {
-                            atividades.remove(j);
-                            qntA--;
-                        }
-                    }
-                }
-                else if(editA == 3) {
-                    System.out.println("Qual a identificao da atividade que deseja editar: ");
-                    String name_editA = in.next();
-                    for(int j = 0; j < atividades.size(); j++) {
-                        if(atividades.get(j).getId().equals(name_editA)) {
-                            System.out.println("O que deseja editar?");
-                            System.out.println("1 para descrição\n2 para data de inicio\n3 para hora de inicio\n4 para data de termino\n5 para hora de termino\6 para responsavel\n7 para profissional\n");
-                            int decide = in.nextInt();
-                            if(decide == 1) {
-                                atividades.get(j).desc();
-                            }
-                            else if(decide == 2) {
-                                
-                            }
-                            else if(decide == 3) {
-                                
-                            }
-                            else if(decide == 4) {
-                                
-                            }
-                            else if(decide == 5) {
-                                
-                            }
-                            else if(decide == 6) {
-                                
-                            }
-                            else if(decide == 7) {
-                                
-                            }
-                        }
-                        else if(j == atividades.size()-1) {
-                            System.out.println("Identificação não encontrada");
-                        }
-                    }
-                }
-            }
-            else if(edit.equalsIgnoreCase("valor da bolsa")) {
-                System.out.println("De qual profissional deseja editar o valor da bolsa? ");
-                String edit_valor_bolsa_name = in.next(); // guarda o nome do profissional pra ter o valor da bolsa editado
-                for (int j = 0; j < this.profissionais.length; j++) {
-                    if(edit_valor_bolsa_name == this.profissionais[j]) {
-                        System.out.println("Digite o novo valor da bolsa: ");
-                        this.valor_bolsa[j] = in.nextDouble();
-                    }
-                }
-            }
-            else if(edit.equalsIgnoreCase("tempo da bolsa")) {
-                System.out.println("Digite o novo tempo da bolsa(em horas): ");
-                this.tempo_bolsa = in.nextDouble();
-            } else {
-                System.out.println("\nDigite uma opção válida!\n");
-                i = true;
-            }
-        }
-    }
 }
