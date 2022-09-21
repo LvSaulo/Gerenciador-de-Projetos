@@ -10,6 +10,7 @@ public class Users {
     public int cargo;
     public double valor_bolsa;
     public double tempo_bolsa; // em horas
+    StatusUser status;
 
     public Users(int id, String name, String senha, Double valor_bolsa, Double tempo_bolsa) {
         this.id = id;
@@ -17,12 +18,15 @@ public class Users {
         this.name = name;
         this.valor_bolsa = valor_bolsa;
         this.tempo_bolsa = tempo_bolsa;
+        this.status = StatusUser.ALUNO;
     }
 
     public int getID() {return this.id;}
     public String getSenha() {return this.senha;}
     public String getName() {return this.name;}
     public Double getValorBolsa() {return this.valor_bolsa;}
+    public Double getTempoBolsa() {return this.tempo_bolsa;}
+    public StatusUser getStatus() {return this.status;}
 
     public void addUsers() {
         setPassword();
@@ -47,11 +51,11 @@ public class Users {
         System.out.println("Digite seu tipo de usuario: ");
         cargo = input.nextInt();
 
-        if(cargo == 1) {StatusUser status = StatusUser.ALUNO;}
-        else if(cargo == 2) {StatusUser status = StatusUser.PROFESSOR;}
-        else if(cargo == 3) {StatusUser status = StatusUser.PESQUISADOR;}
-        else if(cargo == 4) {StatusUser status = StatusUser.PROFISSIONAL;}
-        else if(cargo == 5) {StatusUser status = StatusUser.TECNICO;}
+        if(cargo == 1) {this.status = StatusUser.ALUNO;}
+        else if(cargo == 2) {this.status = StatusUser.PROFESSOR;}
+        else if(cargo == 3) {this.status = StatusUser.PESQUISADOR;}
+        else if(cargo == 4) {this.status = StatusUser.PROFISSIONAL;}
+        else if(cargo == 5) {this.status = StatusUser.TECNICO;}
         //
     }
     public void setValorBolsa() {
@@ -96,5 +100,15 @@ public class Users {
                 i = true;
             }
         } 
+    }
+
+    @Override
+    public String toString() {
+        this.id = getID();
+        this.name = getName();
+        this.valor_bolsa = getValorBolsa();
+        this.tempo_bolsa = getValorBolsa();
+        this.status = getStatus();
+        return super.toString();
     }
 }
