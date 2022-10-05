@@ -6,15 +6,15 @@ public class Atividades {
     ArrayList<Users> users = new ArrayList<Users>();
     ArrayList<Users> users_atividade = new ArrayList<Users>();
 
-    public String identificacao;
-    public String descricao;
+    private String identificacao;
+    private String descricao;
     private String data_i, hora_i, data_t, hora_t;
-    public String responsavel;
-    public String profissionais;
-    public String[] tarefas_per_profissional;
+    private String responsavel;
+    private String profissionais;
+    private String[] tarefas_per_profissional;
 
-    public int qntP = 1;
-    public int tarefas;
+    private int qntP = 1;
+    private int tarefas;
 
     public Atividades(String identificacao, String descricao, String data_i, String hora_i, String data_t,
             String hora_t, String responsavel, String profissionais, String[] tarefas_per_profissional, ArrayList<Users> users) {
