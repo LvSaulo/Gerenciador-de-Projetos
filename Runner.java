@@ -46,7 +46,6 @@ public class Runner {
                             System.out.printf("LOGADO! Olá %s\n", users.get(i).getName());
                             loginUser = users.get(i);
                             menu();
-                            break;
                         }
                     }
                     else if(i == users.size()-1) {
@@ -59,21 +58,31 @@ public class Runner {
             else if(opc == 2) {
                 System.out.println("Digite seu id: ");
                 int id = in.nextInt();
-                for(int i = 0; i <= users.size(); i++) {
-                    if(id == users.get(i).getID()) {
-                        System.out.println("Esse ID já existe\nTente digitar outro ID: ");
-                        id = in.nextInt();
-                        i = 0;
-                        break;
-                    }
-                    else if(i == users.size()-1) {
-                        Users newUser = new Users(id, "nome", "senha", 0.2, 2.5);
-                        newUser.addUsers(); 
-                        users.add(newUser);
-                        count_users++;
-                        break;
-                    }
-                }    
+
+                if(users.size() == 0) {
+                    Users newUser = new Users(id, "nome", "senha", 0.2, 2.5);
+                    newUser.addUsers(); 
+                    users.add(newUser);
+                    count_users++;
+                    break;
+                }
+                else {
+                    for(int i = 0; i < users.size(); i++) {
+                        if(id == users.get(i).getID()) {
+                            System.out.println("Esse ID já existe\nTente digitar outro ID: ");
+                            id = in.nextInt();
+                            i = 0;
+                            break;
+                        }
+                        else if(i == users.size()-1) {
+                            Users newUser = new Users(id, "nome", "senha", 0.2, 2.5);
+                            newUser.addUsers(); 
+                            users.add(newUser);
+                            count_users++;
+                            break;
+                        }
+                    }    
+                }
             }
             else if(opc == 3) {
                 System.out.println("Digite seu id: ");
@@ -104,12 +113,12 @@ public class Runner {
         System.out.println("Digite 5 para alterar o valor ou o tempo da bolsa de um usuário.");
         System.out.println("Digite 6 para editar um projeto a partir de um ID.");
         System.out.println("Digite 7 para associar um usuario a algum projeto.");
-        System.out.println("Digite 8 para undo.");
-        System.out.println("Digite 9 para redo.");
-        System.out.println("Digite 10 para alterar o status de um projeto.");
-        System.out.println("Digite 11 para consultar por usuário.");
-        System.out.println("Digite 12 para consultar por ID de projeto.");
-        System.out.println("Digite 13 para consultar por atividade.");
+        System.out.println("Digite 8 para alterar o status de um projeto.");
+        System.out.println("Digite 9 para consultar por usuário.");
+        System.out.println("Digite 10 para consultar por ID de projeto.");
+        System.out.println("Digite 11 para consultar por atividade.");
+        System.out.println("Digite 12 para undo.");
+        System.out.println("Digite 13 para redo.");
         System.out.println("Digite 0 para sair do programa.");
 
         mannager();
@@ -272,12 +281,6 @@ public class Runner {
             
         }
         else if(decide == 8) {
-            
-        }
-        else if(decide == 9) {
-            
-        }
-        else if(decide == 10) {
             System.out.println("Digite o ID do projeto para alterar o status: ");
             String idProjeto = in.next();
             
@@ -287,7 +290,7 @@ public class Runner {
                 }
             }
         }
-        else if(decide == 11) {
+        else if(decide == 9) {
             System.out.println("Digite o ID do Usuario a ser consultado: ");
             int consultar_user = in.nextInt();
 
@@ -301,7 +304,7 @@ public class Runner {
                 }
             }
         }
-        else if(decide == 12) {
+        else if(decide == 10) {
             System.out.println("Digite o ID do projeto a ser consultado: ");
             String consultar_projeto = in.next();
 
@@ -315,7 +318,7 @@ public class Runner {
                 }
             }
         }
-        else if(decide == 13) {
+        else if(decide == 11) {
             System.out.println("Digite o ID da atividade a ser consultada: ");
             String consultar_atividade = in.next();
 
@@ -328,7 +331,17 @@ public class Runner {
                     System.out.println("Atividade não encotrada! ID errado!");
                 }
             }
-        }        
+        }
+        else if(decide == 12) {
+            
+        }
+        else if(decide == 13) {
+            
+            
+        }
+        else if(decide == 0) {
+            return;
+        }    
     }
 
     public Users getUsers(int count_users) {
