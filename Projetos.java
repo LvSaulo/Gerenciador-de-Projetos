@@ -9,16 +9,16 @@ public class Projetos {
     ArrayList<Users> users_intercambio = new ArrayList<Users>();
     ArrayList<Users> users_associados = new ArrayList<Users>();
 
-    public String identificacao;
-    public String descricao;
-    public String data_i, hora_i, data_t, hora_t;
-    public String coordenador;
-    public double[] valor_bolsa;
-    public double tempo_bolsa;
-    public int stt;
+    private String identificacao;
+    private String descricao;
+    private String data_i, hora_i, data_t, hora_t;
+    private String coordenador;
+    private double[] valor_bolsa;
+    private double tempo_bolsa;
+    private int stt;
 
-    public int qntP; // Quantidade de profissionais
-    public int qntA; // Quantidade de Atividades
+    private int qntP; // Quantidade de profissionais
+    private int qntA; // Quantidade de Atividades
 
     public Projetos(String identificacao, String descricao, String data_i, String data_t, String hora_i, String hora_t,
             String coordenador, ArrayList<Users> users) {
@@ -269,4 +269,5 @@ public class Projetos {
         System.out.println("digite o tempo da bolsa: ");
         this.tempo_bolsa = in.nextDouble(); */
     }
+
 }
