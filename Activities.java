@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Atividades {
+public class Activities extends SuperPA {
 
     ArrayList<Users> users = new ArrayList<Users>();
     ArrayList<Users> users_atividade = new ArrayList<Users>();
@@ -16,16 +16,12 @@ public class Atividades {
     private int qntP = 1;
     private int tarefas;
 
-    public Atividades(String identificacao, String descricao, String data_i, String hora_i, String data_t,
+    public Activities(String identificacao, String descricao, String data_i, String hora_i, String data_t,
             String hora_t, String responsavel, String profissionais, String[] tarefas_per_profissional,
             ArrayList<Users> users) {
 
-        this.identificacao = identificacao;
-        this.descricao = descricao;
-        this.data_i = data_i;
-        this.data_t = data_t;
-        this.hora_i = hora_i;
-        this.hora_t = hora_t;
+        super(identificacao, descricao, data_i, data_t, hora_i, hora_t);
+
         this.responsavel = responsavel;
         this.profissionais = profissionais;
         this.tarefas_per_profissional = tarefas_per_profissional;
