@@ -60,7 +60,7 @@ public class Runner {
                 int id = in.nextInt();
 
                 if(users.size() == 0) {
-                    Users newUser = new Users(id, "nome", "senha", 0.2, 2.5);
+                    Users newUser = new Users(id, "nome", "senha");
                     newUser.addUsers(); 
                     users.add(newUser);
                     count_users++;
@@ -75,7 +75,7 @@ public class Runner {
                             break;
                         }
                         else if(i == users.size()-1) {
-                            Users newUser = new Users(id, "nome", "senha", 0.2, 2.5);
+                            Users newUser = new Users(id, "nome", "senha");
                             newUser.addUsers(); 
                             users.add(newUser);
                             count_users++;
@@ -168,7 +168,10 @@ public class Runner {
         else if(decide == 3) {
             System.out.println("\nRELATORIO DE PROJETOS!\n\n");
             for (int i = 0; i < projetos.size(); i++) {
-                System.out.println(projetos.get(i));
+                System.out.println(projetos.get(i).printProjetosInfo());
+            }
+            for(int i = 0; i < atividades.size(); i++) {
+                System.out.println(atividades.get(i).printAtividadesInfo());
             }
         }
         else if(decide == 4) {
@@ -281,14 +284,18 @@ public class Runner {
             
         }
         else if(decide == 8) {
-            System.out.println("Digite o ID do projeto para alterar o status: ");
-            String idProjeto = in.next();
+
+            if(loginUser.getStatusUser() == StatusUser.PROFESSOR || loginUser.getStatusUser() == StatusUser.PESQUISADOR) {
+                System.out.println("Digite o ID do projeto para alterar o status: ");
+                String idProjeto = in.next();
             
-            for(int i = 0; i < projetos.size(); i++) {
-                if(idProjeto == projetos.get(i).getId()) {
-                    projetos.get(i).statusProjeto();
+                for(int i = 0; i < projetos.size(); i++) {
+                    if(idProjeto == projetos.get(i).getId()) {
+                        projetos.get(i).statusProjeto();
+                    }
                 }
-            }
+            } else System.out.println("Você não tem permissão para alterar o Status do projeto!\n");
+            
         }
         else if(decide == 9) {
             System.out.println("Digite o ID do Usuario a ser consultado: ");
@@ -296,7 +303,7 @@ public class Runner {
 
             for(int i = 0; i < users.size(); i++) {
                 if(users.get(i).getID() == consultar_user) {
-                    System.out.println(users.get(i));
+                    System.out.println(users.get(i).printUsersInfo());
                     break;
                 }
                 else if(users.size()-1 == i) {
@@ -310,7 +317,7 @@ public class Runner {
 
             for(int i = 0; i < projetos.size(); i++) {
                 if(projetos.get(i).getId().equalsIgnoreCase(consultar_projeto)) {
-                    System.out.println(projetos.get(i));
+                    System.out.println(projetos.get(i).printProjetosInfo());
                     break;
                 }
                 else if(projetos.size()-1 == i) {
@@ -324,7 +331,7 @@ public class Runner {
 
             for(int i = 0; i < atividades.size(); i++) {
                 if(atividades.get(i).getId().equalsIgnoreCase(consultar_atividade)) {
-                    System.out.println(atividades.get(i));
+                    System.out.println(atividades.get(i).printAtividadesInfo());
                     break;
                 }
                 else if(projetos.size()-1 == i) {
