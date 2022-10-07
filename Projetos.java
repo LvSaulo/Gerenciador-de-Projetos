@@ -1,9 +1,9 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Projetos {
+public class Projects extends SuperPA {
 
-    ArrayList<Atividades> atividades = new ArrayList<Atividades>();
+    ArrayList<Activities> atividades = new ArrayList<Activities>();
     ArrayList<Users> users = new ArrayList<Users>();
     ArrayList<Users> users_projeto = new ArrayList<Users>();
     ArrayList<Users> users_intercambio = new ArrayList<Users>();
@@ -18,15 +18,11 @@ public class Projetos {
     private int qntP; // Quantidade de profissionais
     private int qntA; // Quantidade de Atividades
 
-    public Projetos(String identificacao, String descricao, String data_i, String data_t, String hora_i, String hora_t,
+    public Projects(String identificacao, String descricao, String data_i, String data_t, String hora_i, String hora_t,
             String coordenador, ArrayList<Users> users) {
         
-        this.identificacao = identificacao;
-        this.descricao = descricao;
-        this.data_i = data_i;
-        this.data_t = data_t;
-        this.hora_i = hora_i;
-        this.hora_t = hora_t;
+        super(identificacao, descricao, data_i, data_t, hora_i, hora_t);
+        
         this.coordenador = coordenador;
         this.atividades = atividades;
         this.stt = -1;
@@ -102,7 +98,7 @@ public class Projetos {
         qntP = in.nextInt(); // salva a quantidade de profissionais
 
         String[] tarefas = {"g"};
-        Atividades newAtividade = new Atividades(id_at, "a", "b", "2", "data_t", "hora_t", "responsavel", "at_profissionais", tarefas, users_projeto);
+        Activities newAtividade = new Activities(id_at, "a", "b", "2", "data_t", "hora_t", "responsavel", "at_profissionais", tarefas, users_projeto);
         newAtividade.addAtividades();
         atividades.add(newAtividade);
     }
