@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class Runner {
     ArrayList<Users> users = new ArrayList<Users>();
-    ArrayList<Projetos> projetos = new ArrayList<Projetos>();
-    ArrayList<Atividades> atividades = new ArrayList<Atividades>();
+    ArrayList<Projects> projetos = new ArrayList<Projects>();
+    ArrayList<Activities> atividades = new ArrayList<Activities>();
     int count_users = 0;
 
     Users loginUser;
@@ -141,7 +141,7 @@ public class Runner {
                     break;
                 }
                 else if(i == projetos.size()) {
-                    Projetos newProjeto = new Projetos(id, "desc", "1", "3", "41", "32", "coord", users);
+                    Projects newProjeto = new Projects(id, "desc", "1", "3", "41", "32", "coord", users);
                     newProjeto.addProjetos();
                     projetos.add(newProjeto);
                     break;
