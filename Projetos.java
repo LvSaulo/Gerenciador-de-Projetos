@@ -13,8 +13,6 @@ public class Projetos {
     private String descricao;
     private String data_i, hora_i, data_t, hora_t;
     private String coordenador;
-    private double[] valor_bolsa;
-    private double tempo_bolsa;
     private int stt;
 
     private int qntP; // Quantidade de profissionais
@@ -103,7 +101,6 @@ public class Projetos {
         System.out.println("Quantos profissionais vão participar do projeto? ");
         qntP = in.nextInt(); // salva a quantidade de profissionais
 
-        String[] at_profissionais = {"a"};
         String[] tarefas = {"g"};
         Atividades newAtividade = new Atividades(id_at, "a", "b", "2", "data_t", "hora_t", "responsavel", "at_profissionais", tarefas, users_projeto);
         newAtividade.addAtividades();
@@ -259,15 +256,12 @@ public class Projetos {
         qntP = in.nextInt(); // salva a quantidade de projetos
         profissional(qntP);
 
-
         addAt();
-
-        /*for(int i = 0; i < qntP; i++) {
-            System.out.printf("Digite o valor da bolsa do profissional %s: ", this.profissionais[i]);
-            this.valor_bolsa[i] = in.nextDouble();
-        }
-        System.out.println("digite o tempo da bolsa: ");
-        this.tempo_bolsa = in.nextDouble(); */
     }
 
+    public String printProjetosInfo() {
+        return "Identificação: " + this.identificacao + "Descrição: " + this.descricao + "Data de inicio: "
+        + this.data_i + "Hora de inicio: " + this.hora_i + "Data de término: " + this.data_t
+        + "Hora de Término: " + this.hora_t + "Coordenador: " + this.coordenador + "Profissionais: ";
+    }
 }
