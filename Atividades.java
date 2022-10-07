@@ -17,8 +17,9 @@ public class Atividades {
     private int tarefas;
 
     public Atividades(String identificacao, String descricao, String data_i, String hora_i, String data_t,
-            String hora_t, String responsavel, String profissionais, String[] tarefas_per_profissional, ArrayList<Users> users) {
-        
+            String hora_t, String responsavel, String profissionais, String[] tarefas_per_profissional,
+            ArrayList<Users> users) {
+
         this.identificacao = identificacao;
         this.descricao = descricao;
         this.data_i = data_i;
@@ -39,45 +40,48 @@ public class Atividades {
     public String getHoraT() {return this.hora_t;}
     public String getResponsavel() {return this.responsavel;}
     public String getProfissional() {return this.profissionais;}
-    public String[] getTarefas() {return tarefas_per_profissional;}
-
+    public String[] getTarefas() {return this.tarefas_per_profissional;}
 
     Scanner in = new Scanner(System.in);
-    
+
     public void desc() {
         System.out.print("Descrição da Atividade: ");
         this.descricao = in.next();
     }
+
     public void dataI() {
         System.out.print("Digite a data de inicio: ");
         this.data_i = in.next();
     }
+
     public void horaI() {
         System.out.println("Digite a hora de inicio: ");
         this.hora_i = in.next();
     }
-    
+
     public void dataT() {
         System.out.println("Digite a data de termino: ");
         this.data_t = in.next();
     }
+
     public void horaT() {
         System.out.println("Digite a hora de termino: ");
         this.hora_t = in.next();
     }
+
     public void responsavelA() {
         System.out.println("Digite o nome do responsavel da Atividade: ");
         this.responsavel = in.next();
     }
+
     public void profissional() {
         System.out.println("Digite o id do profissional: ");
         int id_profissional = in.nextInt();
-        for(int i = 0; i < this.users.size(); i++) {
-            if(id_profissional == this.users.get(i).getID()) {
+        for (int i = 0; i < this.users.size(); i++) {
+            if (id_profissional == this.users.get(i).getID()) {
                 users_atividade.add(this.users.get(i));
                 break;
-            }
-            else if(i == this.users.size()-1) {
+            } else if (i == this.users.size() - 1) {
                 System.out.println("Usuario não encontrado");
                 break;
             }
@@ -88,8 +92,9 @@ public class Atividades {
 
         taref(tarefas);
     }
+
     public void taref(int tarefas) {
-        for(int j = 0; j < tarefas; j++) {
+        for (int j = 0; j < tarefas; j++) {
             System.out.printf("Digite o nome da atividade que o profissional %s vai fazer: ", users.get(j).getName());
             this.tarefas_per_profissional[j] = in.next();
         }
@@ -109,12 +114,15 @@ public class Atividades {
 
         System.out.println("Quantos profissionais vão participar da atividade? ");
         qntP = in.nextInt(); // salva a quantidade de profissionais
-        for(int i = 0; i < qntP; i++) {
+        for (int i = 0; i < qntP; i++) {
             profissional();
         }
-               
-              
 
-        /*for(int i = 0; i < qntP; i++) {}/* */      
+    }
+
+    public String printAtividadesInfo() {
+        return "Identificação: " + this.identificacao + "Descrição: " + this.descricao + "Data de inicio: "
+                + this.data_i + "Hora de inicio: " + this.hora_i + "Data de término: " + this.data_t
+                + "Hora de Término: " + this.hora_t + "Responsável: " + this.responsavel + "Profissionais: " + this.profissionais + "\nTarefas: " + this.tarefas_per_profissional;
     }
 }
