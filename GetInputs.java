@@ -35,5 +35,15 @@ abstract public class GetInputs {
         }
         return null;
     }
+    public static double getDoubleInput(String label, String errorMessage) {
+        Scanner in = new Scanner(System.in);
+        try {
+            System.out.println(label);
 
+            return in.nextDouble();
+        } catch (NumberFormatException e) {
+            System.err.println(errorMessage);
+        }
+        return -1;
+    }
 }
